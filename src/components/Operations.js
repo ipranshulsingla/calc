@@ -4,6 +4,7 @@ export const Operations=(props)=>{
     _props=props;
     return(<>
         <table>
+            <tbody>
             <tr>
                 <td><button id='add+' onClick={inputOpr}>+</button></td>
                 <td><button id='sub-' onClick={inputOpr}>-</button></td>
@@ -18,11 +19,13 @@ export const Operations=(props)=>{
             <tr>
                 <td colSpan='2' style={{textAlign:'center'}}><button onClick={_props.clr} style={{width:'100%'}}>CE</button></td>
             </tr>
+            </tbody>
         </table>
     </>)
 }
 
 function inputOpr(event){
     let opr=event.target.id.slice(-1);
+    console.log(opr);
     _props.getOpr(opr);
 }

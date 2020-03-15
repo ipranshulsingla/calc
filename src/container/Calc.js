@@ -4,9 +4,9 @@ import {Numpad} from '../components/Numpad';
 import {Operations} from '../components/Operations';
 
 export default class extends Component{
-    constructor(){
-        super();
-        this.props={};
+    constructor(props){
+        super(props);
+        this.props=props;
         this.state={expression:""};
     }   
 
@@ -29,20 +29,24 @@ export default class extends Component{
     }  
     
     getOpr(opr){
+        console.log(opr)
         let oprs=['+','-','*','/'];
         let exp=this.state.expression;
         let res=oprs.indexOf(exp.slice(-1));
-        if(res<1){
+        if(res<0){
             exp=exp+opr;
         }
         else{
-            exp=exp.slice(-(exp.length),-2)+opr;
+            exp=exp.slice(0,exp.length-1)+opr;
         }
         this.setState({expression:exp});
     }
 
     getResult(){
-        this.setState({expression:eval(this.state.expression)+''});
+        // eslint-disable-next-line
+        let res=eval(this.state.expression)
+        res=res?res:0
+        this.setState({expression:res+''});
     }
 
     clr(){

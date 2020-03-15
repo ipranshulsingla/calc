@@ -12,21 +12,22 @@ function createNumpad(){
     for(let i=1;i<=3;++i){
         let tr=[];
         for(;j<=3*i;++j){
-            tr.push(<td>
+            tr.push(<td key={j}>
                 <button onClick={inputExp} id={"num"+j}>{j}</button>
             </td>);
         }
-        table.push(<tr>{tr}</tr>);
+        table.push(<tbody key={i}><tr>{tr}</tr></tbody>);
     }
-        table.push(<tr>
+        table.push(<tbody key={0}>
+                    <tr>
                         <td colSpan='3' style={{textAlign:'Center'}}>
                             <button onClick={inputExp} id={'num'+0}>{0}</button>
                         </td>
                     </tr>
+        </tbody>
         );
     return table;
 }
-
 function inputExp(event){
     exp=event.target.id.slice(-1);
     _props.getExp(exp);
